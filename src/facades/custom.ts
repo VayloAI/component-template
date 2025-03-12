@@ -1,7 +1,11 @@
 import BaseFacade from "./base";
 
-import ExampleCacheRepository from "@/cache/repositories/custom";
-import ExampleDBRepository from "@/database/repositories/custom";
+import ExampleCacheRepository, {
+  exampleRepository as exampleCacheRepository,
+} from "@/cache/repositories/custom";
+import ExampleDBRepository, {
+  exampleRepository as exampleDBRepository,
+} from "@/database/repositories/custom";
 import { Example } from "@/schemas/custom";
 
 export default class SubtitleFacade extends BaseFacade<
@@ -9,7 +13,7 @@ export default class SubtitleFacade extends BaseFacade<
   ExampleDBRepository
 > {
   constructor() {
-    super(new ExampleCacheRepository(), new ExampleDBRepository());
+    super(exampleCacheRepository, exampleDBRepository);
   }
 
   async get(id: number): Promise<Example | undefined> {
@@ -26,3 +30,5 @@ export default class SubtitleFacade extends BaseFacade<
     return result;
   }
 }
+
+export const subtitleFacade = new SubtitleFacade();
