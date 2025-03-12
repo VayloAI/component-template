@@ -4,7 +4,7 @@ import { HttpStatusCode } from "elysia-http-status-code";
 import config from "./config";
 import { log } from "./logging";
 
-import health from "./controllers/health";
+import healthController from "./controllers/health";
 
 const app = new Elysia({
   prefix: "/v1",
@@ -31,7 +31,7 @@ const app = new Elysia({
       error: (error as Error).message,
     };
   })
-  .use(health)
+  .use(healthController)
   .listen({
     port: config.server.port,
     hostname: config.server.hostname,
