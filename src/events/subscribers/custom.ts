@@ -13,9 +13,10 @@ const subcriber = new (class ExampleSubscriber extends BaseSubscriber {
     super("example", "vaylo-example");
   }
 
-  async handler(msg: NatsMessage) {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  handler = async (msg: NatsMessage) => {
     log.info(`${msg.seq}, ${msg.redelivered}, ${msg.string()}`);
-  }
+  };
 })();
 
 await subcriber.init();
